@@ -1,0 +1,231 @@
+/* Global Styles */
+:root {
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --dark-color: #121212; /* تغيير إلى لون أغمق */
+    --light-color: #f8f9fa;
+    --success-color: #198754;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #0dcaf0;
+    --text-color: #ffffff; /* إضافة لون النص الأبيض */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color); /* استخدام اللون الجديد */
+    overflow-x: hidden;
+    background-color: #000000 !important; /* خلفية سوداء */
+}
+
+/* Hero Section */
+.hero-section {
+    background: url('../images/earth-bg.jpg') no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+    position: relative;
+    color: white;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Section Styling */
+.section-title {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-color) !important; /* النص الأبيض */
+    text-shadow: 0 0 10px rgba(0, 180, 255, 0.7);
+}
+
+.section-subtitle {
+    color: #a0a0a0; /* لون رمادي فاتح */
+    margin-bottom: 2rem;
+}
+
+/* Cards */
+.card {
+    transition: all 0.3s ease-in-out;
+    border: 1px solid rgba(0, 180, 255, 0.4) !important;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background-color: rgba(30, 30, 40, 0.9) !important;
+    backdrop-filter: blur(5px);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 180, 255, 0.4);
+}
+
+.card-header {
+    font-weight: 600;
+    background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Tech Cards */
+.tech-card {
+    transition: all 0.3s ease;
+}
+
+.tech-card:hover {
+    transform: scale(1.03);
+}
+
+.tech-icon {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tech-icon img {
+    filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(0, 200, 255, 0.5));
+    transition: all 0.3s ease;
+}
+
+.tech-icon img:hover {
+    filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(0, 220, 255, 0.8));
+}
+
+/* Technical Stack Text Colors */
+#tech-section .card-title {
+    color: white !important;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+#tech-section .card-text {
+    color: #e0e0e0 !important;
+}
+
+/* Images Styling */
+.img-fluid {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 149, 255, 0.116);
+    box-shadow: 0 0 15px rgba(0, 100, 255, 0.3);
+    max-height: 450px;
+}
+
+/* Video Background Styles */
+#bg-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -100;
+    opacity:2; /* شفافية الفيديو */
+}
+
+.video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: -99;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 80vh;
+    }
+    
+    .display-3 {
+        font-size: 2.5rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in;
+}
+/* إزالة الخلفيات البيضاء */
+.card, .tech-card {
+    background-color: rgba(20, 20, 30, 0.9) !important;
+    border: 1px solid rgba(0, 180, 255, 0.4) !important;
+}
+
+/* تعديل خلفية الأقسام الرئيسية */
+#model-section, #tech-section, #gallery-section {
+    background-color: transparent !important;
+}
+
+/* إذا كان لديك هذا الكود أصلاً، قم بتعديله */
+body {
+    background-color: #000 !important;
+}
+.tech-icon img {
+    filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(0, 200, 255, 0.5));
+    transition: all 0.3s ease;
+}
+
+.tech-icon img:hover {
+    filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(0, 220, 255, 0.8));
+    transform: scale(1.1);
+}
+#tech-section {
+    background: linear-gradient(to bottom, rgba(0,10,30,0.8), rgba(0,5,15,0.9)) !important;
+}
+/* Tech Icons Styling - النسخة المحسنة */
+.tech-icon {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    transition: all 0.4s ease;
+}
+
+.tech-icon img {
+    max-height: 60px;
+    max-width: 100%;
+    filter: 
+        brightness(1.2) 
+        contrast(1.2)
+        drop-shadow(0 2px 4px rgba(0, 150, 255, 0.3));
+    transition: all 0.3s ease;
+}
+
+.tech-icon:hover img {
+    transform: scale(1.1);
+    filter: 
+        brightness(1.3)
+        contrast(1.3)
+        drop-shadow(0 4px 8px rgba(0, 200, 255, 0.5));
+}
+
+/* تعديلات إضافية لتحسين الشكل */
+.tech-card {
+    background-color: rgba(25, 35, 45, 0.8) !important;
+    border: 1px solid rgba(0, 180, 255, 0.3) !important;
+}
+
+.tech-card:hover {
+    background-color: rgba(30, 45, 60, 0.9) !important;
+    border-color: rgba(0, 220, 255, 0.5) !important;
+}
+
+.tech-card .card-body {
+    padding: 1.5rem;
+}
