@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flood Segmentation using Deep Learning</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <!-- Video Background -->
+<video autoplay muted loop id="bg-video">
+    <source src="../static/images/sample-results/4K Planet Earth Spinning in Space _ Free HD Videos - No Copyright(720P_HD).mp4" type="video/mp4">
+</video>
+<div class="video-overlay"></div>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12 text-center text-white">
+                    <h1 class="display-3 fw-bold animate__animated animate__fadeInDown">Flood Segmentation using Deep Learning</h1>
+                    <p class="lead mt-3 animate__animated animate__fadeInUp animate__delay-1s">
+                        Segment flooded regions from multispectral satellite images using a custom PyTorch DeepLabV3+ model
+                    </p>
+                    <a href="#upload-section" class="btn btn-primary btn-lg mt-4 animate__animated animate__fadeInUp animate__delay-2s">Try it Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">FloodSeg</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery-section">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#upload-section">Try It</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#model-section">Model</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tech-section">Tech Stack</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Results Gallery Section -->
+    <section id="gallery-section" class="py-5 bg-light">
+                <!-- 12-Band Composite Section -->
+<div class="row mb-5">
+    <div class="col-12 text-center mb-4">
+        <h3 class="text-primary">Multispectral Analysis</h3>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card bg-dark border-info h-100">
+            <div class="card-body text-center">
+                <h5>12-Band Composite</h5>
+                <img src="../static/images/sample-results/output.png" class="img-fluid" alt="12-Band Composite">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card bg-dark border-success h-100">
+            <div class="card-body text-center">
+                <h5>Segmentation Mask</h5>
+                <img src="../static/images/sample-results/orgnals_mask_NDWI.png" class="img-fluid" alt="Segmentation Mask">
+            </div>
+        </div>
+    </div>
+</div>
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-12 text-center">
+                    <h2 class="section-title">Results Gallery</h2>
+                    <p class="section-subtitle">High-quality flood segmentation examples from our model</p>
+                </div>
+            </div>
+            
+            <!-- Sample Results -->
+            <div class="row g-4">
+                <!-- Sample 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">Sample 1</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="result-container">
+                                <img src="../static/images/sample-results/result1.png" class="img-fluid" alt="Sample Result 1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sample 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">Sample 2</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="result-container">
+                                <img src="../static/images/sample-results/result2.png" class="img-fluid" alt="Sample Result 2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sample 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">Sample 3</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="result-container">
+                                <img src="../static/images/sample-results/result3.png" class="img-fluid" alt="Sample Result 3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upload and Prediction Section -->
+    <section id="upload-section" class="py-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-12 text-center">
+                    <h2 class="section-title">Upload Your Image</h2>
+                    <p class="section-subtitle">Process your own 12-band satellite image for flood segmentation</p>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow">
+                        <div class="card-body p-4">
+                            <form id="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
+                                <div class="mb-3">
+                                    <label for="file-upload" class="form-label">Select a 12-band TIFF satellite image</label>
+                                    <input class="form-control" type="file" id="file-upload" name="file" accept=".tif,.tiff" required>
+                                    <div class="form-text">Only .tif or .tiff files are supported (up to 16MB)</div>
+                                </div>
+                                <button type="submit" class="btn btn-primary" id="process-btn">
+                                    <span id="btn-text">Process Image</span>
+                                    <span id="spinner" class="spinner-border spinner-border-sm d-none" role="status"></span>
+                                </button>
+                            </form>
+                            
+                            <div id="upload-info" class="mt-4 d-none">
+                                <div class="alert alert-info">
+                                    <p class="mb-0">Processing your image... This may take a few moments.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Model Overview Section -->
+    <section id="model-section" class="py-5 bg-light">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-12 text-center">
+                    <h2 class="section-title">Model Architecture</h2>
+                    <p class="section-subtitle">Our custom PyTorch DeepLabV3+ implementation</p>
+                </div>
+            </div>
+            
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="../static/images/model-architecture.png" class="img-fluid rounded shadow" alt="Model Architecture">
+                </div>
+                <div class="col-lg-6">
+                    <div class="model-details">
+                        <h3 class="mb-3">EnhancedPreProjDeepLabV3Plus</h3>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item bg-light">
+                                <strong>Input:</strong> 12-band multispectral satellite imagery
+                            </li>
+                            <li class="list-group-item bg-light">
+                                <strong>Pre-projection:</strong> Conv2d → BatchNorm → ReLU → Conv2d → 3-channels
+                            </li>
+                            <li class="list-group-item bg-light">
+                                <strong>Backbone:</strong> ResNet101
+                            </li>
+                            <li class="list-group-item bg-light">
+                                <strong>Model:</strong> DeepLabV3+
+                            </li>
+                            <li class="list-group-item bg-light">
+                                <strong>Output:</strong> 1-channel binary segmentation mask
+                            </li>
+                            <li class="list-group-item bg-light">
+                                <strong>Training:</strong> Custom combo_loss, IoU metric, early stopping & LR scheduler
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Stack Section -->
+    <section id="tech-section" class="py-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-12 text-center">
+                    <h2 class="section-title">Technical Stack</h2>
+                    <p class="section-subtitle">Technologies powering this application</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="tech-card card h-100 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="tech-icon mb-3">
+                                <img src="https://pytorch.org/assets/images/pytorch-logo.png" alt="PyTorch" class="img-fluid" style="max-height: 60px;">
+                            </div>
+                            <h5 class="card-title">PyTorch</h5>
+                            <p class="card-text">Deep learning framework for model training and inference</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="tech-card card h-100 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="tech-icon mb-3">
+                                <img src="https://segmentation-models-pytorch.readthedocs.io/en/latest/_static/logo.png" alt="SMP" class="img-fluid" style="max-height: 60px;">
+                            </div>
+                            <h5 class="card-title">SMP</h5>
+                            <p class="card-text">Segmentation Models PyTorch for the DeepLabV3+ implementation</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="tech-card card h-100 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="tech-icon mb-3">
+                                <img src="https://flask.palletsprojects.com/en/stable/_images/flask-name.svg" alt="Flask" class="img-fluid" style="max-height: 60px;">
+                            </div>
+                            <h5 class="card-title">Flask</h5>
+                            <p class="card-text">Lightweight Python web framework for the backend API</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="tech-card card h-100 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="tech-icon mb-3">
+                                <img src="https://tse4.mm.bing.net/th/id/OIP.pQ26vjIDropRy_aIhcuXYQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Rasterio" class="img-fluid" style="max-height: 60px;">
+                            </div>
+                            <h5 class="card-title">Rasterio</h5>
+                            <p class="card-text">For handling geospatial raster data and satellite imagery</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="tech-card card h-100 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="tech-icon mb-3">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/1024px-HTML5_logo_and_wordmark.svg.png" alt="HTML5" class="img-fluid" style="max-height: 60px;">
+                            </div>
+                            <h5 class="card-title">HTML5/CSS3/JS</h5>
+                            <p class="card-text">Modern frontend technologies for responsive UI</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="tech-card card h-100 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="tech-icon mb-3">
+                                <img src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" alt="Bootstrap" class="img-fluid" style="max-height: 60px;">
+                            </div>
+                            <h5 class="card-title">Bootstrap 5</h5>
+                            <p class="card-text">CSS framework for responsive mobile-first design</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5>Flood Segmentation</h5>
+                    <p>Segment flooded regions from multispectral satellite images using deep learning.</p>
+                </div>
+                
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#gallery-section" class="text-white">Gallery</a></li>
+                        <li><a href="#upload-section" class="text-white">Try It</a></li>
+                        <li><a href="#model-section" class="text-white">Model</a></li>
+                        <li><a href="#tech-section" class="text-white">Tech Stack</a></li>
+                    </ul>
+                </div>
+                
+                <<div class="col-lg-4">
+    <h5 class="mb-3 fw-bold text-uppercase text-white">Let's Connect</h5>
+    
+    <div class="d-flex align-items-center gap-3">
+        <a href="https://github.com/Hassan-DS507" target="_blank" class="icon-link">
+            <img src="../static/images/github-icon.png" alt="GitHub" width="28">
+        </a>
+        <a href="https://linkedin.com/in/hassan-abdul-razeq" target="_blank" class="icon-link">
+            <img src="../static/images/linkedin-icon.png" alt="LinkedIn" width="28">
+        </a>
+    </div>
+
+    <p class="mt-4 text-white">
+        <i class="fas fa-envelope me-2"></i> ha.razak.ds@gmail.com
+    </p>
+</div>
+
+            
+            <hr class="my-4 bg-secondary">
+            
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0">&copy; 2025 Flood Segmentation Project By Hassan Abdul-Razeq.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/script.js"></script>
+</body>
+</html>
