@@ -239,9 +239,9 @@ The model achieves excellent performance on the test set with an IoU score of 0.
 
 ### Model Performance Examples
 
-| Input Image (RGB) | Ground Truth Mask | Model's Prediction |
+| Sample 1 | Sample 2 | Sample 3|
 |:-----------------:|:-----------------:|:------------------:|
-| ![Input 0](images_plot/best_result_0.png) | ![Truth 0](images_plot/best_result_1.png) | ![Prediction 0](images_plot/best_result_3.png) |
+| ![Input 0](images_plot/best_result_0.png) | ![Truth 0](images_plot/best_result_1.png) | ![Prediction 0](images_plot/best_result_3png.png) |
 
 
 *The model demonstrates pixel-perfect accuracy in identifying water bodies across diverse terrain.*
@@ -273,7 +273,7 @@ The deployment application provides an end-to-end pipeline for water segmentatio
 
 **Web Application Output**:
 
-![Web App Output](images_plot/best_result_3.png)
+![Web App Output](images_plot/best_result_3png.png)
 
 *The Flask application interface showing the input RGB image, predicted water mask, and an overlay for visual comparison, making the results easily interpretable for end users.*
 
@@ -296,4 +296,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Deep learning implementation using PyTorch and segmentation-models-pytorch
 - Web interface built with Flask
 - Model training and evaluation conducted on GPU-accelerated hardware
+
 
