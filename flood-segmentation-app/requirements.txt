@@ -1,1 +1,11 @@
+flask
+torch
+torchvision
+torchaudio
+segmentation-models-pytorch
+numpy
+rasterio
+pillow
+matplotlib
+gdown
 
