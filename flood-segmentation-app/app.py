@@ -7,7 +7,14 @@ import rasterio
 from PIL import Image
 import matplotlib.pyplot as plt
 import segmentation_models_pytorch as smp
+import gdown
 
+MODEL_PATH = 'DeepLabV3_model.pth'
+
+if not os.path.exists(MODEL_PATH):
+    os.makedirs(os.path.dirname(MODEL_PATH), exist_ok=True)
+    url = "https://drive.google.com/file/d/1XQVV96YJN1zr0goV9aRxFtJIcpE7PlTV/view?usp=sharing"  # حط الـ FILE_ID بتاعك
+    gdown.download(url, MODEL_PATH, quiet=False)
 # Initialize Flask app
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
@@ -43,7 +50,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = WaterSegmenter().to(device)
 
 try:
-    state_dict = torch.load('DeepLabV3_model.pth', map_location=device)
+    state_dict = torch.load(MODEL_PATH, map_location=device)
     # Handle key naming differences
     state_dict = {k.replace('unet.', 'model.'): v for k, v in state_dict.items()}
     model.load_state_dict(state_dict, strict=False)
@@ -157,5 +164,6 @@ def download_mask():
     mask_path = os.path.join(app.config['UPLOAD_FOLDER'], 'mask.png')
     return send_file(mask_path, as_attachment=True)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
